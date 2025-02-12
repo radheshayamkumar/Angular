@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Hide & Show</title>
+    <style>
+       .main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.col1 ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.col1 li {
+    background: #f1f1f1;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* table */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.table th {
+    background: #007bff;
+    color: white;
+    text-transform: uppercase;
+}
+
+.table tbody tr:nth-child(even) {
+    background: #f8f9fa;
+}
+
+.table tbody tr:hover {
+    background: #e2e6ea;
+}
+
+.active {
+    color: green;
+    font-weight: bold;
+}
+
+.inactive {
+    color: red;
+    font-weight: bold;
+}
+
+
+    </style>
+    
+</head>
+<body>
+    <div class="main">
+        <div *ngIf="isDiv1Visible" class="card" id="card1">
+            <h3>Card 1</h3>
+            <p>This is the first card.</p>
+        </div>
+        <div class="buttons">
+            <button (click)="hideDiv1()">Hide</button>
+            <button (click)="showDiv1()">Show</button>
+        </div>
+    
+        <div *ngIf="isDiv2Visible" class="card" id="card2">
+            <h3>Card 2</h3>
+            <p>This is the second card.</p>
+        </div>
+        <div class="buttons">
+            <button (click)="toggle()">Toggle</button>
+        </div>
+    
+        <div *ngIf="num1 == num2" class="card" id="card3">
+            <h3>Card 3</h3>
+            <p>This is the third card.</p>
+        </div>
+        <div class="buttons">
+            <input [(ngModel)]="num1" type="text" placeholder="num1">
+            <input [(ngModel)]="num2" type="text" placeholder="num2">
+        </div>
+    
+        <div *ngIf="isActive" class="card" id="card4">
+            <h3>Card 4</h3>
+            <p>This is the fourth card.</p>
+        </div>
+        <div class="buttons">
+            <input type="checkbox" [(ngModel)]="isActive">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col1">
+            <ul>
+                <li *ngFor="let city of cityArray">{{ city }}</li>
+            </ul>
+        </div>
+        <div class="col2">
+            <select name="" id="">
+                <option *ngFor="let city of cityArray" value="">{{city}}</option>
+            </select>
+        </div>
+
+        <div class="col3">
+            <select name="" id="">
+                <option *ngFor="let std of studentList" value=[std.studentId]>{{std.name}}</option>
+            </select>
+        </div>
+
+        
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Sr No</th>
+                        <th>Name</th>
+                        <th>City</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let std of studentList; let srNo = index">
+                        <td>{{ srNo + 1 }}</td>
+                        <td>{{ std.name }}</td>
+                        <td>{{ std.city }}</td>
+                        <td><span *ngIf="std.isActive">Active</span>
+                            <span *ngIf="!std.isActive">De-Active</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+       
+            </div>
+    
+    
+</body>
+</html>

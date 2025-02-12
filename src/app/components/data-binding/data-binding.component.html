@@ -1,0 +1,40 @@
+<div class="col-4">
+    <h3>Interpolation</h3>
+    <h4>STUDENT DETAILS : </h4>
+    <div class="row-4">
+            <h4>Student name : {{name}}</h4>
+            <h4>Course : {{course}}</h4>
+            <button class="btn" (click)="changeCourse()">Change Course</button>
+            <h4>Roll : {{Roll}} </h4>
+    </div>
+</div>
+
+<div class="col-4">
+    <div [class]="class">
+        <h3>Property Binding</h3>
+        <input [type] = "inputType" [value]="value">
+
+    </div>
+    <div>
+        <div >
+            <button class="btn" (click) ="hit('Btn Clicked')">click me</button>
+            <span (click)="hit('This is from span')">hello</span>
+        </div>
+    </div>
+
+    <div>
+        <h3>Two-way-data-binding</h3>
+        <p><strong>Note : </strong><i>ngModel only applicable on input element</i></p>
+        <input type="text" [(ngModel)]="course" value="enter course"><button>{{course}}</button>
+
+        <div>
+            <select name="state" id="state"  [(ngModel)]="state">
+                <option value="select">select</option>
+                <option value="Goa">Goa</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Maharastra">Maharastra</option>
+                <option value="Delhi">Delhi</option>
+            </select>
+        </div>
+    </div>
+</div>
